@@ -36,13 +36,16 @@ app.get("/", (req, res) => {
     });
 });
 
-app.listen(8000, () => console.log("server working"));
+app.listen(process.env.PORT || 8000, () => console.log("server working"));
 
 //article page
 app.post("/article", (req, res) => {
   try {
     const { fileName } = req.body;
-    res.sendFile(path.join(__dirname, fileName));
+    if (fileName === undefined) {
+      return res.status(404).json("file not found");
+    }
+    res.sendFile(path.join(__dirname, `/${fileName}`));
   } catch (err) {
     res.json("Something went wrong!");
   }
