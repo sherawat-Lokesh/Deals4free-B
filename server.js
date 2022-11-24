@@ -8,6 +8,7 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+
 //connecting to mongodb database
 // const moongoseUrl =
 //   "mongodb+srv://sherawat-Lokesh:hApddrZuNCu5Qh2@cluster0.c9znsxm.mongodb.net/?retryWrites=true&w=majority";
@@ -36,17 +37,20 @@ app.get("/", (req, res) => {
     });
 });
 
-app.listen(process.env.PORT || 8000, () => console.log("server working"));
-
 //article page
+let file = "";
 app.post("/article", (req, res) => {
   try {
     const { fileName } = req.body;
     if (fileName === undefined) {
       return res.status(404).json("file not found");
     }
-    res.sendFile(path.join(__dirname, `/${fileName}`));
+
+
+    res.sendFile(path.join(__dirname, `./htmlFiles/${fileName}`));
   } catch (err) {
     res.json("Something went wrong!");
   }
 });
+
+app.listen(process.env.PORT || 8000, () => console.log("server working"));
