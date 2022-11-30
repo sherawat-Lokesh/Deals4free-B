@@ -19,21 +19,22 @@ app.use(bodyParser.json());
 
 //connecting to psql(postgresql) for fetching home page card components
 const db = knex({
-  client: "pg",
+      client: "pg",
   connection: {
-    host: "127.0.0.1",
-    port: 5432,
-    user: "postgres",
+        host: "127.0.0.1",
+        port: 5432,
+        user: "postgres",
     password: "12345@Temp",
     database: "deals4_database",
-  },
+              },
 });
+
 //home page response
 app.get("/", (req, res) => {
   db.select("*")
     .from("cardcomponent")
-    .then((data) => {
-      return res.json(data);
+      .then((data) => {
+        return res.json(data);
     });
 });
 
@@ -42,14 +43,12 @@ let file = "";
 app.post("/article", (req, res) => {
   try {
     const { fileName } = req.body;
-    if (fileName === undefined) {
-      return res.status(404).json("file not found");
-    }
-
-
-    res.sendFile(path.join(__dirname, `./htmlFiles/${fileName}`));
-  } catch (err) {
-    res.json("Something went wrong!");
+      if (fileName === null) {
+        return res.status(404).json("file not found");
+      }
+          res.sendFile(path.join(__dirname, `./htmlFiles/${fileName}`));
+  }catch (err) {
+          res.json("Something went wrong!");
   }
 });
 
