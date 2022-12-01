@@ -21,10 +21,10 @@ app.use(bodyParser.json());
 const db = knex({
       client: "pg",
   connection: {
-        host: "127.0.0.1",
+        host: "dpg-ce49h1hgp3jocdduv0fg-a",
         port: 5432,
-        user: "postgres",
-    password: "12345@Temp",
+        user: "sherawat",
+    password: "iGgQSfNcttYb2WuLzID3feLzWbKfBY0R",
     database: "deals4_database",
               },
 });
