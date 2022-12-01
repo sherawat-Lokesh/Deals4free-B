@@ -9,13 +9,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-//connecting to mongodb database
-// const moongoseUrl =
-//   "mongodb+srv://sherawat-Lokesh:hApddrZuNCu5Qh2@cluster0.c9znsxm.mongodb.net/?retryWrites=true&w=majority";
 
-// moongose
-//   .connect(moongoseUrl, { useNewUrlParser: true })
-//   .then((res) => console.log(res));
 
 //connecting to psql(postgresql) for fetching home page card components
 const db = knex({
