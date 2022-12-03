@@ -6,7 +6,12 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const app = express();
 
-app.use(cors());
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 
