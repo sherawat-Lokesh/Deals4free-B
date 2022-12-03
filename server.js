@@ -15,25 +15,24 @@ app.use(bodyParser.json());
 const db = knex({
       client: "pg",
   connection: {
-        host: "dpg-ce49h1hgp3jocdduv0fg-a",
-        port: 5432,
-        user: "sherawat",
-    password: "iGgQSfNcttYb2WuLzID3feLzWbKfBY0R",
-    database: "deals4_database",
+        host: process.env.DATABASE_URL,
+        port:5432,
+        user:'sherawat',
+        database:'deals4_database_31qe',
+        ssl:true,
               },
 });
 
 //home page response
 app.get("/", (req, res) => {
   db.select("*")
-    .from("cardcomponent")
+    .from("deals4_database_31qe")
       .then((data) => {
         return res.json(data);
     });
 });
 
 //article page
-let file = "";
 app.post("/article", (req, res) => {
   try {
     const { fileName } = req.body;
