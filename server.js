@@ -17,6 +17,7 @@ const db = knex({
   connection: {
         host: process.env.DATABASE_URL,
         user:'sherawat',
+        port:5432,
         password:'nuUfQLici2QAhxULZTuiK2Dpc7T6lrAB',
         database:'deals4_database_31qe',
               },
