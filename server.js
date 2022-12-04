@@ -5,30 +5,32 @@ const knex = require("knex");
 const bodyParser = require("body-parser");
 const path = require("path");
 const app = express();
+const port=process.env.PORT || 8000
 
-app.use(cors());
-app.use(bodyParser.json());
 
+
+  app.use(cors());
+  app.use(bodyParser.json());
 
 
 //connecting to psql(postgresql) for fetching home page card components
 const db = knex({
       client: "pg",
   connection: {
-        host: process.env.DATABASE_URL,
-        user:'sherawat',
+        host: '127.0.0.1',
+        user:'postgres',
         port:5432,
-        password:'nuUfQLici2QAhxULZTuiK2Dpc7T6lrAB',
-        database:'deals4_database_31qe',
+        password:'12345@Temp',
+        database:'deals4_database',
               },
 });
 
 //home page response
 app.get("/", (req, res) => {
   db.select("*")
-    .from("deals4_database_31qe")
+    .from("cardcomponent")
       .then((data) => {
-        res.json('hiii')
+
         return res.json(data);
     });
 });
@@ -46,4 +48,4 @@ app.post("/article", (req, res) => {
   }
 });
 
-app.listen(process.env.PORT || 8000, () => console.log("server working"));
+app.listen(port, () => console.log("server working",port));
