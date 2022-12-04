@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const knex = require("knex");
-// const moongose = require("mongoose");
+
 const bodyParser = require("body-parser");
 const path = require("path");
 const app = express();
