@@ -6,12 +6,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const app = express();
 
-const corsOptions ={
-   origin:'*', 
-   credentials:true,            //access-control-allow-credentials:true
-   optionSuccessStatus:200,
-}
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(bodyParser.json());
 
 
@@ -21,10 +16,9 @@ const db = knex({
       client: "pg",
   connection: {
         host: process.env.DATABASE_URL,
-        port:5432,
         user:'sherawat',
+        password:'nuUfQLici2QAhxULZTuiK2Dpc7T6lrAB',
         database:'deals4_database_31qe',
-        ssl:true,
               },
 });
 
