@@ -28,6 +28,7 @@ app.get("/", (req, res) => {
   db.select("*")
     .from("deals4_database_31qe")
       .then((data) => {
+        res.json('hiii')
         return res.json(data);
     });
 });
