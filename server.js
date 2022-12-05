@@ -17,11 +17,11 @@ const port=process.env.PORT || 8000
 const db = knex({
       client: "pg",
   connection: {
-        host: '127.0.0.1',
-        user:'postgres',
+        host: 'arjuna.db.elephantsql.com',
+        user:'fneevojl',
         port:5432,
-        password:'12345@Temp',
-        database:'deals4_database',
+        password:'BSJ8Lof4LycpOkJ7_6F7qTe1unyR11aM',
+        database:'fneevojl',
               },
 });
 
