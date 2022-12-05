@@ -24,6 +24,7 @@ const db = knex({
         database:'deals4_database',
               },
 });
+app.get("/",(req,res)=>{return res.json('hii')})
 
 //home page response
 app.get("/", (req, res) => {
