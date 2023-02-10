@@ -3,18 +3,17 @@ import bodyParser from "body-parser";
 import express  from "express";
 import cors from 'cors';
 import knex from 'knex';
-import path from "path";
+import  path from "path";
+// const path =require('path')
+const __dirname = path.resolve();
 
 
 dotenv.config()
-
 const app = express();
-
-
   app.use(cors());
   app.use(bodyParser.json());
+  app.use(express.static(path.join(__dirname, './')));
 
-console.log(process.env.HOST,process.env.USER,process.env.PASSWORD,process.env.DATABASE)
 //connecting to psql(postgresql) for fetching home page card components
 const db = knex({
       client: "pg",
@@ -43,12 +42,11 @@ app.post("/article", (req, res) => {
   try {
     const { fileName } = req.body;
     console.log(fileName)
-      if (fileName === null) {
-        return res.status(404).json("file not found");
-      }
-          res.sendFile(path.join(__dirname, `./htmlFiles/${fileName}`));
+      if(fileName !==null)res.sendFile(path.join(__dirname,`./htmlFiles/${fileName}`));
+
   }catch (err) {
           res.json("Something went wrong!");
+          console.log(err)
   }
 });
 
