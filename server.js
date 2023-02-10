@@ -1,27 +1,29 @@
-const express = require("express");
-const cors = require("cors");
-const knex = require("knex");
+import * as dotenv from 'dotenv'
+import bodyParser from "body-parser";
+import express  from "express";
+import cors from 'cors';
+import knex from 'knex';
+import path from "path";
 
-const bodyParser = require("body-parser");
-const path = require("path");
+
+dotenv.config()
+
 const app = express();
-const port=process.env.PORT || 8000
-
 
 
   app.use(cors());
   app.use(bodyParser.json());
 
-
+console.log(process.env.HOST,process.env.USER,process.env.PASSWORD,process.env.DATABASE)
 //connecting to psql(postgresql) for fetching home page card components
 const db = knex({
       client: "pg",
   connection: {
-        host: 'arjuna.db.elephantsql.com',
-        user:'fneevojl',
-        port:5432,
-        password:'BSJ8Lof4LycpOkJ7_6F7qTe1unyR11aM',
-        database:'fneevojl',
+        host:process.env.HOST,
+        user:process.env.DATABASE,
+        password:process.env.PASSWORD,
+        database:process.env.DATABASE,
+
               },
 });
 
@@ -40,6 +42,7 @@ app.get("/", (req, res) => {
 app.post("/article", (req, res) => {
   try {
     const { fileName } = req.body;
+    console.log(fileName)
       if (fileName === null) {
         return res.status(404).json("file not found");
       }
@@ -49,4 +52,4 @@ app.post("/article", (req, res) => {
   }
 });
 
-app.listen(port, () => console.log("server working",port));
+app.listen(process.env.PORT || 8000, () => console.log("server working",8000));
